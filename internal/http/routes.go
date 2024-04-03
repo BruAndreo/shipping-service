@@ -6,5 +6,5 @@ import (
 )
 
 func InitializeRoutes(app *fiber.App) {
-	app.Get("/shipping", handlers.GetShippings)
+	app.Get("/shippings", handlers.GetShippings)
 }

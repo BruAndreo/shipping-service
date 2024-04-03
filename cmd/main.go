@@ -13,7 +13,7 @@ func main() {
 	})
 
 	app.Use(logger.New(logger.Config{
-		Format: "[${time}] ${method} ${path} ${status} ${latency}",
+		Format: "[${time}] ${method} ${path} ${status} ${latency}\n",
 	}))
 
 	http.InitializeRoutes(app)
