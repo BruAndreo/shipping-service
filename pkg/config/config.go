@@ -7,17 +7,20 @@ import (
 )
 
 type Config struct {
-	AppPort     string
-	ServiceName string
+	AppPort     string `mapstructure:"PORT"`
+	ServiceName string `mapstructure:"SERVICE_NAME"`
 }
 
 func Initialize() (config Config) {
 	viper.SetConfigFile(".env")
+	viper.AutomaticEnv()
+
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatal("Error to read .env file", err)
 	}
 
-	config.AppPort = viper.GetString("PORT")
-	config.ServiceName = viper.GetString("SERVICE_NAME")
+	if err := viper.Unmarshal(&config); err != nil {
+		log.Fatal("Error to load enviroment variables")
+	}
 	return
 }
